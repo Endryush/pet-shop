@@ -13,7 +13,7 @@ async function getOwners (req, res, next) {
 async function getOwnerById (req, res, next) {
   try {
     const response = await ownerService.getOwnerById(req.params.id)
-    if (!response) res.status(404).send({ message: 'Client not found' })
+    if (!response) res.status(404).send({ message: 'Owner not found' })
     
     res.status(200).send(response)
 
@@ -28,7 +28,7 @@ async function insertOwner (req, res, next) {
     const owner = req.body
   
     if (!owner.name || !owner.phone) {
-      throw new Error('Os campos name e phone são obrigatórios')
+      throw new Error('Name and phone fields are required')
     }
 
     res.status(201).send(await ownerService.insertOwner(owner))
@@ -44,7 +44,7 @@ async function updateOwner (req, res, next) {
     const owner = req.body
   
     if (!owner.name || !owner.phone || !owner.owner_id) {
-      throw new Error('Os campos name, owner_id e phone são obrigatórios')
+      throw new Error('Name, phone and owner_id  fields are required')
     }
 
     res.status(201).send(await ownerService.updateOwner(owner))

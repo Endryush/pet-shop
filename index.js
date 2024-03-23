@@ -4,18 +4,24 @@ import winston from 'winston'
 import dotenv from 'dotenv';
 // routes
 import owner from './routes/owner.js'
+import animal from './routes/animal.js'
 
 const app = express()
-app.use(express.json())
-app.use(cors())
-app.use('/owner', owner)
+app
+  .use(express.json())
+  .use(cors())
+  .listen(3000, () => console.log('API started on port 3000'))
+
+// routes
+app
+  .use('/owner', owner)
+  .use('/animal', animal)
 
 app.use((error, req, res, next) => {
   logger.error(`Error processing request: ${req.method} - ${req.baseUrl} - ${error.message ?? JSON.stringify(error)}`)
   res.status(400).send({ error: error.message ?? error })
 })
 
-app.listen(3000, () => console.log('API started on port 3000'))
 
 dotenv.config();
 
