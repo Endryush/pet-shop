@@ -34,12 +34,7 @@ async function getServicesByOwnerId (ownerId) {
     await Promise.all(ownerAnimals.map(async animal => {
       const servicesByAnimal = await ServiceRepository.getServicesByAnimalId(animal.animalId)
       if (servicesByAnimal?.length > 0) {
-        services.push(
-          {
-            animal: animal,
-            services: servicesByAnimal
-          }
-        )
+        services.push(servicesByAnimal)
         return 
       }
     }))
