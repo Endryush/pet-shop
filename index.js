@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import owner from './routes/owner.js'
 import animal from './routes/animal.js'
 import service from './routes/service.js'
+import post from './routes/post.js'
 
 const app = express()
 app
@@ -18,6 +19,7 @@ app
   .use('/owner', owner)
   .use('/animal', animal)
   .use('/service', service)
+  .use('/post', post)
 
 app.use((error, req, res, next) => {
   logger.error(`Error processing request: ${req.method} - ${req.baseUrl} - ${error.message ?? JSON.stringify(error)}`)
