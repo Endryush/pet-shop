@@ -7,7 +7,9 @@ async function insertPost (post) {
 
     const Post = mongoose.model('Post', PostSchema);
     const newPost = new Post(post)
-    return await newPost.save(newPost)
+    const creatdPost = await newPost.save(newPost)
+
+    return await getPostById(creatdPost._id)
   } catch (error) {
     throw error
   }
@@ -40,7 +42,9 @@ async function insertComment (post) {
     const mongoose = await connect()
     const PostInfo = mongoose.model('PostInfo', PostSchema)
 
-    return await PostInfo.findOneAndUpdate({ _id: post._id }, post)
+    const updatedPost = await PostInfo.findOneAndUpdate({ _id: post._id }, post)
+
+    return await  getPostById(updatedPost._id)
   } catch (error) {
     throw error
   }
