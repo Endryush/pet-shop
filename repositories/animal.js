@@ -60,7 +60,7 @@ async function deleteAnimal (id) {
 
 async function getAnimalByOwner (id) {
   try {
-    return await AnimalModel.findOne({ where: { ownerId: id } })
+    return await AnimalModel.findAll({ where: { ownerId: id } })
   } catch (error) {
     throw error
   }
