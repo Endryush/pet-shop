@@ -27,8 +27,8 @@ async function insertAnimal (req, res, next) {
   try {
     const animal = req.body
   
-    if (!animal.name || !animal.type || !animal.owner_id) {
-      throw new Error('Name, type and owner_idfields are required')
+    if (!animal.name || !animal.type || !animal.ownerId) {
+      throw new Error('Name, type and ownerId fields are required')
     }
 
     res.status(201).send(await animalService.insertAnimal(animal))
@@ -43,8 +43,8 @@ async function updateAnimal (req, res, next) {
   try {
     const animal = req.body
   
-    if (!animal.name || !animal.type || !animal.owner_id || !animal.animal_id) {
-      throw new Error('name, owner_id, animal_id and type fields are required')
+    if (!animal.name || !animal.type || !animal.ownerId || !animal.animalId) {
+      throw new Error('name, ownerId, animalId and type fields are required')
     }
 
     res.status(201).send(await animalService.updateAnimal(animal))
@@ -67,7 +67,7 @@ async function deleteAnimal (req, res, next) {
 
 async function getAnimalByOwner (req, res, next) {
   try {
-    const ownerId = req.query.owner_id
+    const ownerId = req.query.ownerId
     if (!ownerId) throw new Error('Send a valid owner ID')
 
     const response = await animalService.getAnimalByOwner(ownerId)

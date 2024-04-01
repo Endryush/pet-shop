@@ -43,8 +43,8 @@ async function updateOwner (req, res, next) {
   try {
     const owner = req.body
   
-    if (!owner.name || !owner.phone || !owner.owner_id) {
-      throw new Error('Name, phone and owner_id  fields are required')
+    if (!owner.name || !owner.phone || !owner.ownerId) {
+      throw new Error('Name, phone and ownerId  fields are required')
     }
 
     res.status(201).send(await ownerService.updateOwner(owner))

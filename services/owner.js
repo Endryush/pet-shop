@@ -22,7 +22,7 @@ async function deleteOwner (id) {
   if (!owner) throw new Error('The Owner with the given ID was not found.');
 
   const animalsByOwner =  await animalRepository.getAnimalByOwner(id)
-  if (animalsByOwner.length > 0)  throw new Error('The Owner with the given ID has animals registered.');
+  if (animalsByOwner?.length > 0)  throw new Error('The Owner with the given ID has animals registered.');
 
   return await ownerRepository.deleteOwner(id)
 }
